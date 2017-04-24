@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/water_view"
+    android:visibility="gone"
+    android:layout_height="match_parent">
+
+    <com.example.computer.roundandwaterprogressbar.myView.YellowWaterView
+        android:id="@+id/yellow_water_view"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+    <com.example.computer.roundandwaterprogressbar.myView.WhiteWaterView
+        android:id="@+id/white_water_view"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+</FrameLayout>

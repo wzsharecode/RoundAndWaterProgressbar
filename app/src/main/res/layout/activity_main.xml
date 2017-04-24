@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    android:background="@color/main_red_color">
+
+    <com.example.computer.roundandwaterprogressbar.myView.CircleProgressView
+        android:id="@+id/circleProgressbar"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:layout_marginBottom="30dp"
+        app:bgColor="#FFFF00"
+        app:progressColor="#FF0F00"
+        app:radius="100dip"
+        app:strokeWidth="2dip" />
+
+    <include
+        layout="@layout/layout_water_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/circleProgressbar"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF" />
+</RelativeLayout>
+
