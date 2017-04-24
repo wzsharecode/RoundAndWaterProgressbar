@@ -17,6 +17,7 @@
         app:radius="100dip"
         app:strokeWidth="2dip" />
 
+
     <include
         layout="@layout/layout_water_view"
         android:layout_width="match_parent"
