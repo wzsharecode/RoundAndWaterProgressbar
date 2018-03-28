@@ -30,26 +30,74 @@ import com.example.computer.roundandwaterprogressbar.interfac.OnProgressListener
  * Created by wds on 16/7/24.
  */
 public class CircleProgressView extends View {
-    private Paint mPaintBackground; // 绘制背景圆环的画笔
-    private Paint mPaintProgress;   // 绘制背景进度的画笔
-    private Paint mPaintProgressBitmap; // 绘制背景进度的画笔
+    /**
+     * 绘制背景圆环的画笔
+     */
+    private Paint mPaintBackground;
+    /**
+     * 绘制背景进度的画笔
+     */
+    private Paint mPaintProgress;
+    /**
+     * 绘制背景进度的画笔
+     */
+    private Paint mPaintProgressBitmap;
 
-    private Paint mPaintBackgroundRoundDot;  // 绘制背景进度的画笔
-    private Paint mPaintProgressRoundDot;    // 绘制背景进度的画笔
+    /**
+     * 绘制背景进度的画笔
+     */
+    private Paint mPaintBackgroundRoundDot;
+    /**
+     * 绘制背景进度的画笔
+     */
+    private Paint mPaintProgressRoundDot;
 
-    private Paint mPaintText; // 绘制背景字体的画笔
-    private Paint mPaintTextIntro; // 绘制背景字体的画笔
+    /**
+     * 绘制背景字体的画笔
+     */
+    private Paint mPaintText;
+    /**
+     * 绘制背景字体的画笔
+     */
+    private Paint mPaintTextIntro;
     private Paint mPaintTextPercent;
 
-    private int bgColor = Color.WHITE; // 背景圆环的颜色
-    private int textColor = Color.WHITE; // 字体的颜色
-    private int progressColor = Color.WHITE; // 进度条的颜色
-    private float mStrokeWidth = 10;// 背景圆环的宽度
-    private float mRadius = 40; // 背景圆环的半径
-    private RectF rectPro;// 进度条的绘制外接矩形
-    private int mProgress = 0; // 当前进度
-    private int mStartProgress = 0; // 当前进度
-    private int mMaxProgress = 100; // 最大进度
+    /**
+     * 背景圆环的颜色
+     */
+    private int bgColor = Color.WHITE;
+    /**
+     * 字体的颜色
+     */
+    private int textColor = Color.WHITE;
+    /**
+     * 进度条的颜色
+     */
+    private int progressColor = Color.WHITE;
+    /**
+     * 背景圆环的宽度
+     */
+    private float mStrokeWidth = 10;
+    /**
+     * 背景圆环的半径
+     */
+    private float mRadius = 40;
+    /**
+     * 进度条的绘制外接矩形
+     */
+    private RectF rectPro;
+    /**
+     * 当前进度
+     */
+    private int mProgress = 0;
+    /**
+     * 当前进度
+     */
+    private int mStartProgress = 0;
+    /**
+     * 最大进度
+     */
+    private int mMaxProgress = 100;
     private int mWidth, mHeight;
     private OnProgressListener mOnProgressListener;
 
@@ -92,6 +140,8 @@ public class CircleProgressView extends View {
                         break;
                     case R.styleable.CircleProgress_android_textColor:
                         textColor = ta.getColor(R.styleable.CircleProgress_android_textColor, textColor);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -209,7 +259,8 @@ public class CircleProgressView extends View {
         int result = -1;
         int mode = MeasureSpec.getMode(measureSpec);
         int size = MeasureSpec.getSize(measureSpec);
-        if (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.UNSPECIFIED) { // 这两种模式需要自己计算
+        // 这两种模式需要自己计算
+        if (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.UNSPECIFIED) {
             result = (int) (mRadius * 2 + mStrokeWidth * 2);
         } else {
             result = size;
@@ -219,6 +270,7 @@ public class CircleProgressView extends View {
 
     /**
      * 绘制画布
+     *
      * @param canvas
      */
     @Override
@@ -239,14 +291,15 @@ public class CircleProgressView extends View {
 
     /**
      * 绘制百分比字体
+     *
      * @param canvas
      */
     private void drawTextPercent(Canvas canvas) {
         //绘制简介字体
         int with = 0;
-        if (mText.length()>1){
+        if (mText.length() > 1) {
             with = 100;
-        }else {
+        } else {
             with = 70;
         }
         canvas.drawText("%", mWidth / 2 + with, mHeight / 2 + 40, mPaintTextPercent);
@@ -254,6 +307,7 @@ public class CircleProgressView extends View {
 
     /**
      * 绘制背景灰色的圆环
+     *
      * @param canvas
      */
     private void drawBackground(Canvas canvas) {
@@ -264,6 +318,7 @@ public class CircleProgressView extends View {
 
     /**
      * 绘制中间简介字体
+     *
      * @param canvas
      */
     private void drawTextIntro(Canvas canvas) {
@@ -278,10 +333,12 @@ public class CircleProgressView extends View {
 
     /**
      * 绘制圆形进度条
+     *
      * @param canvas
      */
     private void drawProgress(Canvas canvas) {
-        float angle = mStartProgress / (mMaxProgress * 1.0f) * 360; // 圆弧角度
+        // 圆弧角度
+        float angle = mStartProgress / (mMaxProgress * 1.0f) * 360;
         //绘制进度条
         canvas.drawArc(rectPro, -90, -angle, false, mPaintProgress);
         if (mStartProgress < mProgress) {
@@ -303,6 +360,7 @@ public class CircleProgressView extends View {
 
     /**
      * 绘制圆形背景
+     *
      * @param canvas
      */
     private void drawBackgroundDot(Canvas canvas) {
@@ -317,10 +375,12 @@ public class CircleProgressView extends View {
 
     /**
      * 绘制圆点背景 进度条
+     *
      * @param canvas
      */
     private void drawProgressRoundDot(Canvas canvas) {
-        float angle = mStartProgress / (mMaxProgress * 1.0f) * 360; // 圆弧角度
+        // 圆弧角度
+        float angle = mStartProgress / (mMaxProgress * 1.0f) * 360;
         float radius = 9.0f;
         mPaintProgressRoundDot.setStyle(Paint.Style.FILL);
         mPaintProgressRoundDot.setColor(Color.WHITE);
@@ -329,13 +389,13 @@ public class CircleProgressView extends View {
             double x = yuan + yuan * Math.cos(30 * i * 3.14 / 180);
             double y = yuan + yuan * Math.sin(30 * i * 3.14 / 180);
 
-//            canvas.drawBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.faguang), yuan * 2 - (float) y - 3, yuan * 2 - (float) x - 3, mPaintBackgroundRoundDot);
             canvas.drawCircle(yuan * 2 - (float) y + 10, yuan * 2 - (float) x + 10, radius, mPaintProgressRoundDot);
         }
     }
 
     /**
      * 绘制进度条
+     *
      * @param canvas
      */
     private void drawProgressBitmap(Canvas canvas) {
@@ -356,7 +416,8 @@ public class CircleProgressView extends View {
         }
         int center = getWidth() / 2;
         int radius = center - thumbSize_int / 2 - 40;
-        float angle = mStartProgress / (mMaxProgress * 1.0f) * 360; // 圆弧角度
+        // 圆弧角度
+        float angle = mStartProgress / (mMaxProgress * 1.0f) * 360;
         double cycle_round = (angle + 90 * 2) * Math.PI / 180;
         float x = (float) (Math.cos(cycle_round) * (radius) + center - thumbSize_int / 2);
         float y = (float) (Math.sin(cycle_round) * (radius) + center - thumbSize_int / 2);
@@ -368,6 +429,7 @@ public class CircleProgressView extends View {
 
     /**
      * 设置进度 刻度
+     *
      * @param progress
      */
     public void setProgress(int progress) {
